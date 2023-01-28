@@ -1,6 +1,6 @@
 NAME = push_swap
 CC = gcc
-LIBFT_PATH=libft_expanded/
+LIBFT_PATH=libft/
 LIBFT_NAME=libft.a
 LIBFT  = $(addprefix $(LIBFT_PATH), $(LIBFT_NAME))
 CFLAGS = -Wall -Werror -Wextra
@@ -13,12 +13,8 @@ all: $(NAME)
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-$(NAME): git_submodule lib $(OBJS)
+$(NAME): lib $(OBJS)
 	$(CC) -o $(NAME) $(OBJS) $(LIBFT)
-
-git_submodule:
-	@git submodule init
-	@git submodule update
 
 lib:
 	$(MAKE) -C $(LIBFT_PATH)
